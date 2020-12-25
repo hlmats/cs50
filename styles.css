@@ -1,0 +1,107 @@
+.nvmy
+{
+	color: black;
+	font-size: 14px;
+}
+
+.nvmy:hover
+{
+	color: black;
+}
+
+.my1
+{
+	margin-top: 95px;
+}
+ 
+.my2
+{
+	padding: 20px;
+}
+
+.my3
+{
+	border-radius: 40px;
+	border: 1px solid #D8D8D8;
+	width: 600px;
+	height: 46px;
+	padding-left: 37px;
+}
+ 
+.my4
+{
+	padding: 5px;
+}
+
+.my5
+{
+	border: none;
+	border-radius: 4px;
+	color: #484848;
+	background-color: #F0F0F0;
+	font-size: 15px;
+	padding-top: 7px;
+	padding-right: 14px;
+	padding-bottom: 7px;
+	padding-left: 14px;
+}
+
+
+
+
+
+.my6
+{
+	padding-top: 50px;
+	padding-left: 34px;
+}
+
+.my7
+{
+	width: 560px;
+}
+
+.my7:focus
+{
+	border: 1px solid #186cff;
+}
+
+
+.grid {
+	display: grid;
+	padding-top: 2px;
+	padding-left: 30px;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 180px 580px auto;
+}
+
+.grid-item {
+	font-size: 14px;
+	padding: 5px;
+	text-align: left;
+}
+
+.my8
+{
+	padding-top: 20px;
+	padding-left: 660px;
+}
+
+.my9
+{
+	border: none;
+	font-size: 13px;
+	color: white;
+	background-color: #186cff;
+	padding: 5px 11px;
+	text-align: center;
+	border-radius: 2px;
+}
+
+.nvmy2
+{
+	color: #ea4335;
+	font-size: 20px;
+}
+ 
