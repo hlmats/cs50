@@ -1,0 +1,35 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+
+    <h1>New Page</h1>
+    
+	{% if key == 2 %}
+	<h2 style="color: red;">Such a title already exists. Choose some other title.</h2>
+	{% endif %}
+	
+    <div class="form-group">
+    <form action="{% url 'create' %}" class="post-form" method="POST">
+        {% csrf_token%}
+        
+        <p style="padding-top: 20px;">Title:</p>
+
+        {{form2.title}}
+           
+        <p style="padding-top: 20px;">Content:</p>
+
+        {{form2.content}}
+        
+        <div style="padding-top: 15px;">
+        <input type="submit" value="submit">
+        </div>
+    </form>
+    </div>
+    
+
+
+{% endblock %}
