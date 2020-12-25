@@ -1,0 +1,182 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+
+		
+<div class="container">				
+		
+	<div style="padding: 30px;">
+		
+		<div class="card" style="width: 55rem;">
+			<img src="{{ item.image }}" class="card-img-top" alt="{{ item.title }}" >
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">{{ item.title }}</span></h5>
+				<p class="card-text">{{ item.description }}</p>
+				<p class="card-text"><span style="font-weight: bold;">Category: </span>{{ item.category }}</p>
+				<p class="card-text"><span style="font-weight: bold;">Starting price: </span>${{ item.starting_price }} </p>
+				<p class="card-text">By: {{ item.owner }}</p>
+				<p class="card-text">Time of Creating: {{ item.date }}</p>
+			</div>
+		</div>			
+			
+	</div>
+				
+</div>
+
+
+
+{% if key1 == 0 %}
+
+<div class="container">
+	<div style="padding: 30px;">		
+		<div class="card" style="width: 55rem;">
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">No Comments</span></h5>	
+			</div>
+		</div>	
+	</div>
+</div>
+
+{% else %}
+
+<div class="container">
+
+	<div style="padding: 30px;">
+		
+		<div class="card" style="width: 55rem;">				
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">Comments</span></h5>
+				<ul class="card-text">
+					{% for com in comment %}
+						<li class="card-text">{{com.text}} by: {{com.user}}. Added: {{com.date}}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+						
+	</div>
+
+</div>
+
+{% endif %}
+
+
+
+
+{% if user.is_authenticated %}
+
+
+<div class="container">
+	<div style="padding: 30px;">		
+		<div class="card" style="width: 55rem;">
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">Add Comment:</span></h5>	
+				<form action="{% url 'addcomm' item.id %}" method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<input class="form-control col-md-8" type="text" name="comment" placeholder="Comment">
+					</div>				
+					<input class="btn btn-primary" type="submit" value="Submit">
+				</form>
+			</div>
+		</div>	
+	</div>
+</div>
+
+
+{% endif %}
+
+
+			
+{% if user.is_authenticated %}
+{% if key2 == 1 %}
+
+<div class="container">
+	<div style="padding: 30px;">		
+		<div class="card" style="width: 55rem;">
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">Add to Watchlist:</span></h5>			
+				<form action="{% url 'addwatch' item.id %}" method="post">
+					{% csrf_token %}				
+					<input class="btn btn-primary" type="submit" value="Add">
+				</form>
+			</div>
+		</div>	
+	</div>
+</div>
+
+			
+{% else %}
+
+<div class="container">
+	<div style="padding: 30px;">		
+		<div class="card" style="width: 55rem;">
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">This List is in Watchlist</span></h5>
+				<h5 class="card-title"><span style="font-weight: bold;">Remove from Watchlist:</span></h5>
+				<form action="{% url 'removewatch' item.id %}" method="post">
+					{% csrf_token %}				
+					<input class="btn btn-primary" type="submit" value="Remove">
+				</form>
+			</div>
+		</div>	
+	</div>
+</div>	
+	
+{% endif %}		
+{% endif %}
+
+
+			
+{% if user.is_authenticated %}
+
+<div class="container">
+	<div style="padding: 30px;">		
+		<div class="card" style="width: 55rem;">
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">Make Your Bid:</span></h5>
+				{% if num == 0 %}
+				<p class="card-text">Number of bids: {{num}}. Your bid should be greater or equal than Price and greater than Max Bid.</p>
+				{% else %}
+				<p class="card-text">Number of bids: {{num}} . Max Bid: {{maxbid.bid}} . Your bid should be greater or equal than Price and greater than Max Bid.</p>			
+				{% endif %}
+				<form action="{% url 'addbid' item.id %}" method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<input class="form-control col-md-8" type="number" name="addbid" placeholder="Your Bid, .00$">
+					</div>
+					<input class="btn btn-primary" type="submit" value="Submit">
+				</form>			
+			</div>
+		</div>	
+	</div>
+</div>			
+			
+{% endif %}
+
+
+{% if user.is_authenticated %}
+{% if key3 == 0 %}
+
+<div class="container">
+	<div style="padding: 30px;">		
+		<div class="card" style="width: 55rem;">
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">Close the Auction:</span></h5>	
+				<form action="{% url 'close' item.id %}" method="post">
+					{% csrf_token %}				
+					<input class="btn btn-primary" type="submit" value="Close">
+				</form>
+			</div>
+		</div>	
+	</div>
+</div>
+
+{% endif %}
+{% endif %}
+			
+			
+		
+	
+{% endblock %}

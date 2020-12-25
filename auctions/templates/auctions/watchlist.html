@@ -1,0 +1,122 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div class="container">
+
+    <h2>Won and Closed Items</h2>
+
+</div>
+
+
+{% if key == 1 %}
+
+<div class="container">
+	<div style="padding: 30px;">		
+		<div class="card" style="width: 55rem;">
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">No Won Item in Watchlist</span></h5>	
+			</div>
+		</div>	
+	</div>
+</div>
+
+{% else %}
+
+<div class="container">
+
+<div class="card-deck">
+
+		{% for item in watchlist0 %}
+		
+		<div style="padding: 30px;">
+		
+			<div class="card" style="width: 18rem;">
+				<img src="{{ item.listing.image }}" class="card-img-top" alt="{{ item.listing.title }}" >
+				<div class="card-body">
+					<h5 class="card-title"><span style="font-weight: bold;">{{ item.listing.title }}</span></h5>
+					<p class="card-text">{{ item.listing.description }}</p>
+					<p class="card-text"><span style="font-weight: bold;">Category: </span>{{ item.listing.category }}</p>
+					<p class="card-text"><span style="font-weight: bold;">Starting price: </span>${{ item.listing.starting_price }} </p>
+					<p class="card-text">By: {{ item.listing.owner }}</p>
+					<p class="card-text">Time of Creating: {{ item.listing.date }}</p>
+					<a href="{% url 'closed_thing' item.listing.id %}" class="btn btn-primary">{{ item.listing.title }}</a>
+				</div>
+			</div>
+			
+			
+		</div>
+		
+					
+		
+		{% endfor %}
+		
+</div>
+
+</div>
+
+{% endif %}
+
+
+
+
+
+<div class="container">
+
+    <h2>Watchlist</h2>
+
+</div>
+
+
+
+{% if nb == 0 %}
+
+<div class="container">
+	<div style="padding: 30px;">		
+		<div class="card" style="width: 55rem;">
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">No Watchlist</span></h5>	
+			</div>
+		</div>	
+	</div>
+</div>
+
+{% else %}
+
+<div class="container">
+
+<div class="card-deck">
+
+		{% for item in watchlist %}
+		
+		<div style="padding: 30px;">
+		
+			<div class="card" style="width: 18rem;">
+				<img src="{{ item.listing.image }}" class="card-img-top" alt="{{ item.listing.title }}" >
+				<div class="card-body">
+					<h5 class="card-title"><span style="font-weight: bold;">{{ item.listing.title }}</span></h5>
+					<p class="card-text">{{ item.listing.description }}</p>
+					<p class="card-text"><span style="font-weight: bold;">Category: </span>{{ item.listing.category }}</p>
+					<p class="card-text"><span style="font-weight: bold;">Starting price: </span>${{ item.listing.starting_price }} </p>
+					<p class="card-text">By: {{ item.listing.owner }}</p>
+					<p class="card-text">Time of Creating: {{ item.listing.date }}</p>
+					<a href="{% url 'list_thing' item.listing.id %}" class="btn btn-primary">{{ item.listing.title }}</a>
+				</div>
+			</div>
+			
+			
+		</div>
+		
+					
+		
+		{% endfor %}
+		
+</div>
+
+</div>
+	
+{% endif %}
+	
+
+	
+{% endblock %}

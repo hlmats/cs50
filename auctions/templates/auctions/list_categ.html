@@ -1,0 +1,58 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div class="container">
+
+    <h2>{{ name }}</h2>
+	
+	
+</div>
+
+{% if key == 0 %}
+
+<div class="container">
+
+		
+<div class="card-deck">
+		{% for item in listing %}
+		<div style="padding: 30px;">
+		
+			<div class="card" style="width: 18rem;">
+				<img src="{{ item.image }}" class="card-img-top" alt="{{ item.title }}" >
+				<div class="card-body">
+					<h5 class="card-title"><span style="font-weight: bold;">{{ item.title }}</span></h5>
+					<p class="card-text">{{ item.description }}</p>
+					<p class="card-text"><span style="font-weight: bold;">Category: </span>{{ item.category }}</p>
+					<p class="card-text"><span style="font-weight: bold;">Starting price: </span>${{ item.starting_price }} </p>
+					<p class="card-text">By: {{ item.owner }}</p>
+					<p class="card-text">Time of Creating: {{ item.date }}</p>
+					<a href="{% url 'list_thing' item.id %}" class="btn btn-primary">{{ item.title }}</a>
+				</div>
+			</div>
+			
+			
+		</div>
+		
+		{% endfor %}
+</div>		
+		
+</div>
+
+{% else %}
+
+<div class="container">
+	<div style="padding: 30px;">		
+		<div class="card" style="width: 55rem;">
+			<div class="card-body">
+				<h5 class="card-title"><span style="font-weight: bold;">No Items</span></h5>	
+			</div>
+		</div>	
+	</div>
+</div>
+
+{% endif %}
+
+		
+	
+{% endblock %}
