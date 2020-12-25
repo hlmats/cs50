@@ -1,0 +1,28 @@
+textarea {
+    min-height: 400px;
+}
+  
+  
+.elem
+{
+	margin: 15px;
+	padding: 15px;	
+	border-color: #686868;
+	border-radius: 8px;
+	border-style: solid;
+	border-width: 3px;
+	cursor: pointer;
+}
+
+
+.el
+{
+	margin: 15px;
+	padding: 15px;	
+	border-color: #686868;
+	border-radius: 8px;
+	border-style: solid;
+	border-width: 1px;
+}
+
+
