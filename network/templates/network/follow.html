@@ -1,0 +1,65 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+
+<div class="fl">
+<h2>You Follow:</h2>
+</div>
+
+</div>
+
+<div class="container">
+
+
+	{% for post in fol_posts %}
+	<div class="contfl">
+		<p><a class="post" href="{% url 'us_posts' post.poster.id %}">{{ post.poster }}</a></p>
+		<p class="post">{{ post.body }}</p>
+		<p class="post">{{ post.timestamp }}</p>		
+		<p class="post">likes: <span data-id="{{post.id}}" id="post-numlikes-{{post.id}}" class="likes">{{ post.numlikes }}</span></p>
+			<img data-id="{{post.id}}" id="post-likes-{{post.id}}" class="like"	
+			{% if not request.user in post.likes.all %}
+				data-post_liked="not_liked"
+				src="https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png"
+			{% else %}
+				data-post_liked="liked"
+				src="https://img.icons8.com/pastel-glyph/64/000000/thumbs-down--v2.png"
+			{%endif%}			
+			/>
+	</div>
+	{% endfor %}
+	{% if not fol_posts %}
+		<h5>Nobody</h5>
+	{%endif%}
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if fol_posts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ fol_posts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        {% if fol_posts.paginator.num_pages %}
+			<span class="current">
+				Page {{ fol_posts.number }} of {{ fol_posts.paginator.num_pages }}.
+			</span>
+		{% endif %}
+
+        {% if fol_posts.has_next %}
+            <a href="?page={{ fol_posts.next_page_number }}">next</a>
+            <a href="?page={{ fol_posts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/likes.js' %}"></script>
+{% endblock %}

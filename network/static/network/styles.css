@@ -1,0 +1,51 @@
+.off{
+	pointer-events: none;
+}
+
+.on{
+	pointer-events: initial;
+}
+
+.contal{
+	margin: 15px;
+	padding: 15px;	
+	background-color: #91ffff;
+	border-color: #000080;
+	border-radius: 8px;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.all{
+	color: #000080;
+}
+
+
+.contus{
+	margin: 15px;
+	padding: 15px;	
+	background-color: #E6E6FA;
+	border-color: #8A2BE2;
+	border-radius: 8px;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.us{
+	color: #8A2BE2;
+}
+
+.contfl{
+	margin: 15px;
+	padding: 15px;	
+	background-color: #d3fc3f;
+	border-color: #00FF00;
+	border-radius: 8px;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.fl{
+	color: #00FF00;
+}
+

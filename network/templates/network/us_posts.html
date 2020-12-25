@@ -1,0 +1,115 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+
+<div class="us">
+<h2>{{ owner }}'s Posts</h2>
+</div>
+
+</div>
+
+<div class="container">
+
+<p class="fol">number of followers the {{ owner }} has: <span id="f1" class="fol">{{f1}}</span></p>
+<p class="fol">number of people that the {{ owner }} follows: <span id="f2" class="fol">{{f2}}</span></p>
+
+{% if user.is_authenticated %}
+	{% if request.user != owner %}	
+		<button data-poster="{{owner.id}}" id="post-poster-{{owner.id}}" class="butfoll">		
+			{% if follow %}
+				unfollow
+			{% else %}
+				follow
+			{% endif %}		
+		</button>
+	{% else %}
+		<div id="new_post-view" name="new_post-view">
+			<div class="us">
+			<h3>New Post</h3>
+			</div>
+				<form action="{% url 'new_post' %}" method="post" id="new_post-form">
+					{% csrf_token %}
+					<textarea class="form-control" id="new_post-body" name="new_post-body" placeholder="Body of Post"></textarea>
+					<input type="submit" value="submit" id="new_post-submit"/>
+				</form>			
+		</div>
+	{% endif %}
+
+	{% for post in us_posts %}
+	<div class="contus">
+		<p><a class="post" href="{% url 'us_posts' post.poster.id %}">{{ post.poster.username }}</a></p>
+		<p class="post" id="postbody-{{post.id}}">{{ post.body }}</p>
+		<p class="post">{{ post.timestamp }}</p>		
+		<p class="post">likes: <span data-id="{{post.id}}" id="post-numlikes-{{post.id}}" class="likes">{{ post.numlikes }}</span></p>
+		{%if request.user != post.poster%}
+			<img data-id="{{post.id}}" id="post-likes-{{post.id}}" class="like"	
+			{% if not request.user in post.likes.all %}
+				data-post_liked="not_liked"
+				src="https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png"
+			{% else %}
+				data-post_liked="liked"
+				src="https://img.icons8.com/pastel-glyph/64/000000/thumbs-down--v2.png"
+			{%endif%}			
+			/>
+		{%endif%}		
+		{% if request.user == post.poster %}		
+			<button data-postid="{{post.id}}" id="post-edit-{{post.id}}" class="post">Edit</button>
+			<div style="display: none;" id="text-edit-{{post.id}}">
+				<h3>Edit Post</h3>						
+				<form action="{% url 'edit' post.id %}" method="post" id="edit_post-form-{{post.id}}">
+					{% csrf_token %}
+					<textarea class="form-control" id="edit_post-body-{{post.id}}" name="edit_post-body" >{{ post.body }}</textarea>
+					<input type="submit" value="submit" id="edit_post-submit-{{post.id}}"/>
+				</form>
+			</div>
+		{% endif %}
+	</div>	
+	{% endfor %}
+	
+{% else %}
+	{% for post in us_posts %}
+	<div class="contus">
+		<p><a class="post" href="{% url 'us_posts_un' post.poster.id %}">{{ post.poster.username }}</a></p>
+		<p class="post">{{ post.body }}</p>
+		<p class="post">{{ post.timestamp }}</p>
+		<p class="post">likes: {{ post.numlikes }}</p>
+	</div>
+	{% endfor %}
+	
+{% endif %}
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if us_posts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ us_posts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        {% if us_posts.paginator.num_pages %}
+			<span class="current">
+				Page {{ us_posts.number }} of {{ us_posts.paginator.num_pages }}.
+			</span>
+		{% endif %}
+
+        {% if us_posts.has_next %}
+            <a href="?page={{ us_posts.next_page_number }}">next</a>
+            <a href="?page={{ us_posts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/all.js' %}"></script>
+	<script src="{% static 'network/likes.js' %}"></script>
+	<script src="{% static 'network/newpost.js' %}"></script>
+{% endblock %}
