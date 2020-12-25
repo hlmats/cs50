@@ -1,0 +1,91 @@
+{% extends "booking/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="ht">
+<div class="container">
+
+<div class="all">
+<h2>{{thishot.hot_name}}</h2>
+</div>
+
+</div>
+
+
+
+
+<div class="container">
+
+<div class="cont_b">
+<p></p>
+
+<div class="row">
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<p><b>Date of Booking:</b></p>
+<p>From: {{ inn_date }} To: {{ outt_date }}</p>
+<p>({{ numb_days }} days)</p>
+
+<p><b>Hotel:</b></p>
+<p>"{{ thishot.hot_name }}" in {{ thishot.city }}</p>
+<p>Price per Day, dollars: {{ thishot.price }}</p>
+<p>Rating: {{ thishot.rating }}</p>
+<p><b>About the Hotel:</b></p>
+<p>{{ thishot.description }}</p>
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-0">
+
+<p>
+<img src="{{thishot.photo.url}}" />
+</p>
+
+</div>
+
+
+</div>
+
+<p>
+<button data-allcomm="{{thishot.id}}" id="allcomm-{{thishot.id}}" class="btn btn-primary">See all comments on this hotel</button>
+</p>
+
+
+<div id="divallcomm-{{thishot.id}}" name="divallcomm"></div>
+
+
+{% if user.is_authenticated %}
+
+<p>
+<form action="{% url 'book' thishot.id %}" method="post">
+	{% csrf_token %}
+	<input type="hidden" name="inn_date" value="{{inn_date}}">
+	<input type="hidden" name="outt_date" value="{{outt_date}}">
+	<input type="hidden" name="numb_days" value="{{numb_days}}">
+	<input class="btn btn-primary" type="submit" value="Book!"></p>
+</form>
+</p>
+
+{% else %}
+
+
+<p>To book a room you should log in or register.</p>
+
+{% endif %}
+
+
+</div>
+
+</div>
+
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'booking/allcomments.js' %}"></script>
+{% endblock %}

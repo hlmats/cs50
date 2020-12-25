@@ -1,0 +1,216 @@
+{% extends "booking/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="ht">
+<div class="container">
+
+<div class="all">
+<h2>Hotels</h2>
+</div>
+
+</div>
+
+
+<div class="container">
+
+<div class="sel">
+<p>
+<h4 id="ord">Order by:</h4>
+</p>
+	<select>
+		<option value="rat">Raiting</option>
+		<option value="inc_price">Increasing Price</option>
+		<option value="dec_price">Decreasing Price</option>
+	</select>
+</div>
+
+</div>
+
+
+<div id="sec_rat">
+
+{% for item in rat_hot %}
+
+<div class="container">
+
+<div class="cont_r">
+
+<div class="row">
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<p><b>Date:</b></p>
+<p>From: {{ inn_date }}</p>
+<p>To: {{ outt_date }}</p>
+<p>({{ numb_days }} days)</p>
+
+<p><b>Hotel:</b></p>
+<p>"{{ item.hot_name }}" in {{ item.city }}</p>
+
+<p>Price per Day, dollars: {{ item.price }}</p>
+<p>Rating: {{ item.rating }}</p>
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-0">
+
+<p>
+<img src="{{item.photo.url}}" />
+</p>
+
+</div>
+
+
+</div>
+
+<p>
+<form action="{% url 'city_hotels' item.id %}" method="post">
+	{% csrf_token %}
+	<input type="hidden" name="inn_date" value="{{inn_date}}">
+	<input type="hidden" name="outt_date" value="{{outt_date}}">
+	<input type="hidden" name="numb_days" value="{{numb_days}}">
+	<input class="btn btn-primary" type="submit" value="See Details">
+</form>
+</p>
+
+
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+
+
+
+
+
+<div id="sec_inc_price">
+
+{% for item in inc_price_hot %}
+
+<div class="container">
+
+<div class="cont_i">
+
+<div class="row">
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<p><b>Date:</b></p>
+<p>From: {{ inn_date }}</p>
+<p>To: {{ outt_date }}</p>
+<p>({{ numb_days }} days)</p>
+
+<p><b>Hotel:</b></p>
+<p>"{{ item.hot_name }}" in {{ item.city }}</p>
+
+<p>Price per Day, dollars: {{ item.price }}</p>
+<p>Rating: {{ item.rating }}</p>
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-0">
+
+<p>
+<img src="{{item.photo.url}}" />
+</p>
+
+</div>
+
+
+</div>
+
+<p>
+<form action="{% url 'city_hotels' item.id %}" method="post">
+	{% csrf_token %}
+	<input type="hidden" name="inn_date" value="{{inn_date}}">
+	<input type="hidden" name="outt_date" value="{{outt_date}}">
+	<input type="hidden" name="numb_days" value="{{numb_days}}">
+	<input class="btn btn-primary" type="submit" value="See Details">
+</form>
+</p>
+
+
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+
+
+
+<div id="sec_dec_price">
+
+{% for item in dec_price_hot %}
+
+<div class="container">
+
+<div class="cont_d">
+
+<div class="row">
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<p><b>Date:</b></p>
+<p>From: {{ inn_date }}</p>
+<p>To: {{ outt_date }}</p>
+<p>({{ numb_days }} days)</p>
+
+<p><b>Hotel:</b></p>
+<p>"{{ item.hot_name }}" in {{ item.city }}</p>
+
+<p>Price per Day, dollars: {{ item.price }}</p>
+<p>Rating: {{ item.rating }}</p>
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-0">
+
+<p>
+<img src="{{item.photo.url}}" />
+</p>
+
+</div>
+
+
+</div>
+
+<p>
+<form action="{% url 'city_hotels' item.id %}" method="post">
+	{% csrf_token %}
+	<input type="hidden" name="inn_date" value="{{inn_date}}">
+	<input type="hidden" name="outt_date" value="{{outt_date}}">
+	<input type="hidden" name="numb_days" value="{{numb_days}}">
+	<input class="btn btn-primary" type="submit" value="See Details">
+</form>
+</p>
+
+
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'booking/section.js' %}"></script>
+
+{% endblock %}

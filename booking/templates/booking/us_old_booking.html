@@ -1,0 +1,111 @@
+{% extends "booking/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="ht">
+<div class="container">
+
+<div class="all">
+<h2>My Old Bookings</h2>
+</div>
+
+</div>
+
+
+{% for item in us_old_booking %}
+
+<div class="container">
+
+<div class="cont_old">
+
+<div class="row">
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<p><b>You Lived Here:</b></p>
+<p>From: {{ item.res_date_in }}</p>
+<p>To: {{ item.res_date_out }}</p>
+<p>({{ item.numb_days }} days)</p>
+
+<p><b>Hotel:</b></p>
+<p>"{{ item.res_hotel.hot_name }}" in {{ item.res_hotel.city }}</p>
+
+<p>Price per Day, dollars: {{ item.res_hotel.price }}</p>
+<p>Rating: {{ item.res_hotel.rating }}</p>
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-0">
+
+<p>
+<img src="{{item.res_hotel.photo.url}}" />
+</p>
+
+</div>
+
+
+</div>
+
+{% if item.is_rating == False %}
+
+<p><b>Rate your grade from zero to ten:</b></p>
+<p>
+<form action="{% url 'rat' item.id %}" method="post" id="rat_post-form-{{item.id}}">
+	{% csrf_token %}
+	<input data-ratid="{{item.id}}" name="rat-body" placeholder="rat" id="rat-body-{{item.id}}" type="number" min="0" max="10">	
+	<input type="submit" value="submit" id="rat-submit-{{item.id}}" disabled="disabled">
+</form>
+</p>
+
+{% else %}
+<p>You mark: {{item.us_rat}}</p>
+{%endif%}
+
+<p>
+<button class="btn btn-primary" data-oldbookcomm="{{item.id}}" id="oldbookcomm-{{item.id}}" class="oldbookcomm">See your comments on this hotel</button>
+</p>
+
+<p>
+<div id="divcomm-{{item.id}}" name="divcomm"></div>
+</p>
+
+<p>
+<button class="btn btn-primary" data-postid="{{item.id}}" id="item-comm-{{item.id}}" class="post">Create New Comment</button>
+	<div style="display: none;" id="text-comm-{{item.id}}">
+		<p><b>New Comment:</b></p>						
+		<form action="{% url 'comment' item.id %}" method="post" data-commid="{{item.id}}" id="comm_post-form-{{item.id}}">
+			{% csrf_token %}
+			<textarea class="form-control" id="comm-body-{{item.id}}" name="comm-body" ></textarea>
+			<input type="submit" value="submit" id="comm-submit-{{item.id}}"/>
+		</form>
+	</div>
+</p>	
+
+
+
+</div>
+
+</div>
+
+{% endfor %}
+
+<div class="container">
+{% if not us_old_booking %}
+	<h5>You don't have old bookings.</h5>
+{%endif%}
+</div>
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'booking/comment.js' %}"></script>
+	<script src="{% static 'booking/rat.js' %}"></script>
+
+{% endblock %}

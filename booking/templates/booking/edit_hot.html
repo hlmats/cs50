@@ -1,0 +1,33 @@
+{% extends "booking/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <h2>Edit Hotel</h2>
+
+
+    <form action="{% url 'edit_hot' edit_hot.id%}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control col-md-6" autofocus type="text" name="hot_name" value="{{edit_hot.hot_name}}">
+        </div>
+		<div class="form-group">
+            <input class="form-control col-md-6" type="text" name="city" value="{{edit_hot.city}}">
+        </div>
+		<div class="form-group">
+            <textarea class="form-control col-md-8" type="textarea" rows="6" name="description" >{{edit_hot.description}}</textarea>
+        </div>
+		<div class="form-group">
+            <input class="form-control col-md-6" type="file" name="photo" value="{{edit_hot.photo}}">
+        </div>
+		<div class="form-group">
+            <input class="form-control col-md-6" type="number" name="free_place" value="{{edit_hot.free_place}}">
+        </div>
+		<div class="form-group">
+            <input class="form-control col-md-6" type="number" name="price" value="{{edit_hot.price}}">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Save">
+    </form>
+
+
+{% endblock %}

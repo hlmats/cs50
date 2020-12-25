@@ -1,0 +1,58 @@
+{% extends "booking/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="ht">
+<div class="container">
+
+<div class="adelt">
+<h2>Do You Want to Delete this Booking?</h2>
+</div>
+
+</div>
+
+
+<div class="container">
+
+<div class="cont_del">
+
+<div class="row">
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<p><b>Date:</b></p>
+<p>From: {{ del_book.res_date_in }}</p>
+<p>To: {{ del_book.res_date_out }}</p>
+<p>({{ del_book.numb_days }} days)</p>
+
+<p><b>Hotel:</b></p>
+<p>"{{ del_book.res_hotel.hot_name }}" in {{ del_book.res_hotel.city }}</p>
+
+<p>Price per Day, dollars: {{ del_book.res_hotel.price }}</p>
+<p>Rating: {{ del_book.res_hotel.rating }}</p>
+<p><b>About the Hotel:</b></p>
+<p>{{ del_book.res_hotel.description }}</p>
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-0">
+
+<p>
+<img src="{{del_book.res_hotel.photo.url}}" />
+</p>
+
+</div>
+
+
+</div>
+
+<h5>Click <a href="{% url 'conf_del_book' del_book.id%}">Yes</a> or <a href="{% url 'us_booking' %}">No</a></h5>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

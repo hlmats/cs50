@@ -1,0 +1,68 @@
+{% extends "booking/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="ht">
+<div class="container">
+
+<div class="all">
+<h2>My Bookings</h2>
+</div>
+
+</div>
+
+
+
+{% for item in us_booking %}
+
+<div class="container">
+
+<div class="cont_us">
+
+<div class="row">
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<p><b>Date:</b></p>
+<p>From: {{ item.res_date_in }}</p>
+<p>To: {{ item.res_date_out }}</p>
+<p>({{ item.numb_days }} days)</p>
+
+<p><b>Hotel:</b></p>
+<p>"{{ item.res_hotel.hot_name }}" in {{ item.res_hotel.city }}</p>
+
+<p>Price per Day, dollars: {{ item.res_hotel.price }}</p>
+<p>Rating: {{ item.res_hotel.rating }}</p>
+<p><b>About the Hotel:</b></p>
+<p>{{ item.res_hotel.description }}</p>
+
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-0">
+
+<p>
+<img src="{{item.res_hotel.photo.url}}" />
+</p>
+
+</div>
+
+
+</div>
+
+<h5><a href="{% url 'del_book' item.id %}">Delete Booking</a></h5>
+
+</div>
+</div>
+
+{% endfor %}
+
+<div class="container">
+{% if not us_booking %}
+	<h5>You don't have any bookings. Would you like to make a booking? <a href="{% url 'index' %}">Book!</a></h5>
+{%endif%}
+</div>
+
+</div>
+{% endblock %}
+
