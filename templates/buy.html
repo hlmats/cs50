@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy trip
+{% endblock %}
+
+{% block main %}
+    <p>You want to buy {{tr}}, price {{pr}}</p>
+    <form action="/buy" method="post">
+        <div class="form-group">
+            <select autofocus class="form-control" name="duration" placeholder="Duration" type="text">
+			{% for row in rows2 %}
+			<option>{{row["duration"]}}</option>
+			{% endfor %}
+			</select>
+		</div>
+		<div class="form-group">
+			<select class="form-control" name="return" placeholder="Return" type="text">
+			{% for row in rows3 %}
+			<option>{{row["return"]}}</option>
+			{% endfor %}
+			</select>
+		</div>
+		<div class="form-group">
+            <input class="form-control" name="persons" placeholder="Number of Persons" type="number" min="1">
+        </div>
+        <button class="btn btn-primary" type="submit">Buy</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Purchases
+{% endblock %}
+
+{% block main %}
+	<table id="customers">
+		<tr>
+			<th>Trip</th>
+			<th>Duration</th>
+			<th>Return</th>
+			<th>Persons</th>
+			<th>Total Price</th>
+		</tr>
+			{% for i in ln %}
+			<tr>
+				<td>{{rows[i]["trip"]}}</td>
+				<td>{{rows[i]["duration"]}}</td>
+				<td>{{rows[i]["return"]}}</td>
+				<td>{{rows[i]["persons"]}}</td>
+				<td>{{price[i]}}</td>
+			</tr>
+			{% endfor %}
+	</table>
+
+<h2>Total amount of money in the account: {{balance}}.</h2>
+
+{% endblock %}

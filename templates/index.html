@@ -1,0 +1,167 @@
+{% extends "layout1.html" %}
+
+{% block title %}
+    Dreams Come True!
+{% endblock %}
+
+{% block main %}
+	<h1 class="h1">Dreams Come True!</h1>
+        <h2 class="h2">About us</h2>
+			<p class="p">
+				Hi, our company <i>Dreams Come True!</i>
+				will fulfill your old dream of traveling in space and time! With our time machine
+				you can travel to various places of the Universe and to different periods of its existence!
+				You can choose the duration of your trip in your proper time and the time at which you wish
+				to return back. And you can also bring friends with you.
+			</p>
+		<h2 class="h2">Our trips</h2>
+			<h3 class="h3">Space Travel</h3>
+
+				<p class="p">
+					You can see <i>The Andromeda Galaxy (NGC 224)</i>. This is a barred spiral galaxy approximately
+					2.5 million light-years (770 kiloparsecs) from Earth, and the nearest major galaxy to the Milky Way:
+				</p>
+
+
+
+
+				<figure class="figure">
+					<img src="static/images/Andromeda_Galaxy_(with_h-alpha).jpg" alt="The Andromeda Galaxy" />
+				</figure>
+
+<!--			<button onclick="document.location='my_page.html'">buy</button>
+			<button onclick="document.location='my_page.html'">buy</button>
+			<a href="localhost:8080/login">Route No. 1</a>-->
+<!--			<a href="{{ url_for('login') }}">buy trip1</a>
+			<a href="{{ url_for('login') }}">buy trip2</a>-->
+				<form action="/login">
+	    			<button type="submit" class="button">Buy Trip to Andromeda</button>
+				</form>
+
+
+				<p class="p">
+					You can have a trip to a quasar (quasi-stellar object). A quasar is an extremely luminous
+					active galactic nucleus, in which a supermassive black hole is surrounded by a gaseous accretion disk.
+					NGC 4319 is a barred spiral galaxy located about 77 million light years away.
+					There is a physical connection between NGC 4319 and Markarian 205, a quasi-stellar object:
+				</p>
+
+				<figure class="figure">
+					<img src="static/images/NGC_4319_I_HST2002.jpg" alt="NGC_4319" />
+				</figure>
+
+<!--				<form action="/login">
+	    			<button type="submit" style="background-color: #87CEFA; color: #0000FF; font-size: 3ex;">buy trip2</button>
+				</form>-->
+
+				<form action="/login">
+	    			<button type="submit" class="button">Buy Trip to Quasar</button>
+				</form>
+
+				<p class="p">
+					You can see <i>Kepler's Supernova</i>.
+					Kepler's Supernova is a Type Ia supernova that placed in the Milky Way. Appearing in 1604,
+					it is the most recent supernova in our galaxy  occurring no farther than 6 kiloparsecs
+					(20,000 light-years) from Earth.
+				</p>
+
+				<figure class="figure">
+					<img src="static/images/Keplers_supernova.jpg" alt="Keplers_supernova" />
+				</figure>
+
+				<form action="/login">
+	    			<button type="submit" class="button">Buy Trip to Kepler's Supernova</button>
+				</form>
+
+				<p class="p">
+					And you can have a trip to a Deneb. Deneb is a first-magnitude star in the constellation
+					of Cygnus, a blue-white supergiant. It is the brightest star in Cygnus and the 19th
+					brightest star in the night sky, with an average apparent magnitude of +1.25:
+				</p>
+
+				<figure class="figure">
+					<img src="static/images/Cygnus_constellation_map.png" alt="Deneb" />
+				</figure>
+
+				<form action="/login">
+	    			<button type="submit" class="button">Buy Trip to Deneb</button>
+				</form>
+
+
+			<h3 class="h3">Historical Travel</h3>
+
+				<p class="p">
+					You can purchase a journey into the past:
+				</p>
+
+				<p class="p">
+					You can go to ancient Athens and meet Socrates, Plato or Aristotle:
+				</p>
+
+
+				<p class="p">
+					<img src="static/images/Socrates_Louvre.jpg" alt="Socrates">
+					<img src="static/images/Head_Platon_Glyptothek_Munich_548.jpg" alt="Plato">
+					<img src="static/images/Aristotle_Altemps_Inv8575.jpg" alt="Aristotle">
+					<img src="static/images/The_Acropolis_of_Athens.jpg" alt="The_Acropolis">
+				</p>
+
+				<form action="/login">
+	    			<button type="submit" class="button">Buy Trip to Ancient Athens</button>
+				</form>
+
+				<p class="p">
+					Or you can visit the Renaissance times and meet Leonardo da Vinci, Raphael, Michelangelo:
+				</p>
+
+				<p class="p">
+					<img src="static/images/Leonardo.png" alt="Leonardo">
+					<img src="static/images/Raphael.jpg" alt="Raphael">
+					<img src="static/images/Michelangelo.jpg" alt="Michelangelo">
+					<img src="static/images/Mona_Lisa.jpg" alt="Mona Lisa">
+				</p>
+
+				<form action="/login">
+	    			<button type="submit" class="button">Buy Trip to Renaissance</button>
+				</form>
+
+				<p class="p">
+					And you can go back to the beginning of the twentieth century, when the theory of relativity
+					and quantum physics were born and talk with Einstein, Planck, Schrödinger, Heisenberg:
+				</p>
+
+				<p class="p">
+					<img src="static/images/Einstein.jpg" alt="Einstein">
+					<img src="static/images/Planck.jpg" alt="Planck">
+					<img src="static/images/Schrodinger.jpg" alt="Schrodinger">
+					<img src="static/images/Heisenberg.jpg" alt="Heisenberg">
+				</p>
+
+				<form action="/login">
+	    			<button type="submit" class="button">Buy Trip to Einstein</button>
+				</form>
+
+				<h2 class="h2">Write your wishes where would you like to travel:</h2>
+    			<form action="/" method="post">
+					<div class="form-group">
+            			<input class="form-control" name="name" placeholder="Your Name" type="text">
+        			</div>
+        			<div class="form-group">
+            			<textarea class="form-control" name="wishes" rows="4" cols="45" placeholder="Your Wishes" type="text"></textarea>
+        			</div>
+        			<button class="btn btn-primary" type="submit">Wishes</button>
+    			</form>
+
+    			<h2 class="h2">Write your comments:</h2>
+
+    			<form action="/" method="post">
+					<div class="form-group">
+            			<input class="form-control" name="name1" placeholder="Your Name" type="text">
+        			</div>
+        			<div class="form-group">
+            			<textarea class="form-control" name="reviews" rows="4" cols="45" placeholder="Your Comments" type="text"></textarea>
+        			</div>
+        			<button class="btn btn-primary" type="submit">Comments</button>
+    			</form>
+
+{% endblock %}
