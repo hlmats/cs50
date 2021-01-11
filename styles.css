@@ -1,0 +1,65 @@
+.body0
+{
+	background-color: #F0F8FF;
+	font-family: academy engraved let;
+	margin: 5% 15%;
+}
+.body1
+{
+	background-color: #87CEFA;
+	font-family: academy engraved let;
+	margin: 5% 15%;
+}
+.body2
+{
+	background-color: #FFFACD;
+	font-family: academy engraved let;
+	margin: 5% 15%;
+}
+.body3
+{
+	background-color: #EE82EE;
+	font-family: academy engraved let;
+	margin: 5% 15%;
+}
+.figure
+{
+	text-align: center;
+	margin: 6%;
+	font-size: 1.5em;
+	font-weight: 600;
+}
+.h1
+{
+	text-align: center;
+	margin: 2%;
+	font-size: 7ex;
+	font-weight: 900;
+}
+.h2
+{
+    margin: 2%;
+	font-size: 2em;
+}
+
+.p
+{
+	margin: 2%;
+	font-size: 1.2em;
+}
+table
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+td
+{
+    border: 1px solid black;
+    padding: 5px;
+}
+th
+{
+    background-color: #6495ED;
+	border: 1px solid black;
+	padding: 5px;
+}
